@@ -13,8 +13,7 @@ class Building {
     this.canUpgrade = false;
     this.upgradeInProgress = false;
     this.description = "";
-    this.icon = 'icofont-tree';
-    //this.icon = 'fas fa-home';
+    this.icon = 'icofont-tree'; // fontawesome: e.g. 'fas fa-home'
   }
 
   init() {
@@ -72,7 +71,7 @@ class Building {
       let doUpgrade = function() {
         if (!self.noLevels) {
           self.properties.level++;
-          let textToShow = 'Yeah, level ' + self.properties.level + ' of ' + helpers.getBuildingName(self.id) + ' completed!';
+          let textToShow = helpers.getStr('building.levelCompleted', self.properties.level, helpers.getBuildingName(self.id));
           helpers.showBuildFinished( textToShow );
         }
   

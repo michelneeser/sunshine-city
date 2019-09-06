@@ -20,27 +20,27 @@ Vue.toasted.register('build_finished', (payload) => {
 }, buildFinishedToastOptions);
 
 Vue.component('resource-bar', {
-  props: ['resources', 'dict'],
+  props: ['resources', 'helpers'],
   template: `
       <div class='resource-bar'>
-        <span>{{ dict['resource.name.' + resources[0].id] }}{{ resources[0].amount }}</span>
+        <span>{{ helpers.getStr('resource.name.' + resources[0].id) }}{{ resources[0].amount }}</span>
         <span class='separator'>|</span>
-        <span>{{ resources[1].amount }} {{ dict['resource.name.' + resources[1].id] }}</span>
+        <span>{{ resources[1].amount }} {{ helpers.getStr('resource.name.' + resources[1].id) }}</span>
       </div>
     `
 })
 
 Vue.component('building', {
-  props: ['building', 'dict', 'helpers'],
+  props: ['building', 'helpers'],
   template: `
       <div class='building col-lg' v-bind:class='{inactive: !building.active}'>
         <div v-if='building.active'>
           <div class='info-wrapper'>
             <h2>{{ helpers.getBuildingName(building.id) }}</h2>
-            <span>&nbsp;<i v-tooltip.right="dict['building.description.' + building.id]" class='icofont-info-circle'></i></span>
+            <span>&nbsp;<i v-tooltip.right="helpers.getStr('building.description.' + building.id)" class='icofont-info-circle'></i></span>
             <ul class='properties'>
               <li v-for='(property, name) in building.properties'>
-                <span v-if="(name != 'level' || !building.noLevels) && name != 'secondsToBuild'">{{ dict['building.property.' + name] }}: {{ property }}</span>
+                <span v-if="(name != 'level' || !building.noLevels) && name != 'secondsToBuild'">{{ helpers.getStr('building.property.' + name) }}: {{ property }}</span>
               </li>
             </ul>
           </div>
@@ -64,7 +64,6 @@ const app = new Vue({
     gameName: 'Sunshine City, California',
     resources: Repository.getResourcesForView(),
     buildings: Repository.getBuildingsForView(),
-    dict: dict,
     helpers: helpers
   },
   methods: {

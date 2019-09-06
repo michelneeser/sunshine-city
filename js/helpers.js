@@ -12,9 +12,19 @@ let helpers = {
     Vue.toasted.global.build_finished( { message: message } );
   },
 
+  getStr: function(key, ...values) {
+    let str = dict[key];
+    if (values) {
+      for ( const [index, value] of values.entries() ) {
+        str = str.replace( "{" + index + "}", value );
+      }
+    }
+    return str;
+  },
+
   getBuildingName: function(id) {
-    return dict['building.name.' + id];
-  }
+    return this.getStr('building.name.' + id);
+  },
 
 }
 

@@ -32,13 +32,14 @@
       <div class="row">
           <div class="col">
             <h1 class="game-title" v-cloak>{{ gameName }}&nbsp;<span class='icofont-sun-alt'></span></h3>
-            <resource-bar v-bind:resources='resources' v-bind:dict='dict'></resource-bar>
+            <resource-bar
+              v-bind:resources='resources'
+              v-bind:helpers='helpers'></resource-bar>
           </div>
       </div>
       <div class="row" v-for='buildingRow in buildings'>
         <building v-for="building in buildingRow" v-bind:key='building.name'
           v-bind:building='building'
-          v-bind:dict='dict'
           v-bind:helpers='helpers'>
         </building>
       </div>
