@@ -3,7 +3,7 @@ class Settings {
   static settings = {
     "saveEnabled" : true,
     "buildingTimeEnabled" : true,
-    "buildingTimeShortingFactor" : 10
+    "buildingTimeShortingFactor" : 0
   }
 
   static get(key) {

@@ -23,7 +23,7 @@ class Building {
     }
   }
 
-  upgrade(peekOnly, toLevel, reload = false) {
+  upgrade(peekOnly, toLevel, reload) {
     let nextLevel = 0;
     if (toLevel != undefined) {
       nextLevel = toLevel;
@@ -119,7 +119,7 @@ class Building {
     // can be overriden to do something after upgrading
   }
 
-  evaluate(firstTime = false) {
+  evaluate(firstTime) {
     if (firstTime && this.properties.secondsToBuild > 0) {
       this.upgradeInProgress = true;
       this.upgrade( false, undefined, true );

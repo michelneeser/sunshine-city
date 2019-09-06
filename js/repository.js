@@ -35,7 +35,7 @@ class Repository {
     return buildingsForView;
   }
 
-  static evaluate(firstTime = false) {
+  static evaluate(firstTime) {
     let saveEnabled = Settings.get("saveEnabled");
 
     if (saveEnabled) {
@@ -60,7 +60,7 @@ let citizens = new Citizens();
 Repository.resources = {
   money: money,
   citizens: citizens,
-}
+};
 
 let villageSquare = new VillageSquare();
 let houses = new Houses();

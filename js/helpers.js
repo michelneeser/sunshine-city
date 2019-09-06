@@ -32,7 +32,7 @@ let helpers = {
 
   getBuildingName: function (id) {
     return this.getStr('building.name.' + id);
-  },
+  }
 
 }
 

@@ -12,7 +12,7 @@ let buildFinishedToastOptions = {
   theme: 'outline',
   iconPack: 'fontawesome',
   icon: 'check-circle'
-}
+};
 
 Vue.toasted.register('build_finished', (payload) => {
   return payload.message;
@@ -31,7 +31,7 @@ let hintToastOptions = {
       toastObject.goAway(0);
     }
   }
-}
+};
 
 Vue.toasted.register('hint', (payload) => {
   return payload.message;
@@ -46,7 +46,7 @@ Vue.component('resource-bar', {
         <span>{{ resources[1].amount }} {{ helpers.getStr('resource.name.' + resources[1].id + (resources[1].amount > 1 ? '.plural' : '.singular')) }}</span>
       </div>
     `
-})
+});
 
 Vue.component('building', {
   props: ['building', 'helpers'],
@@ -74,7 +74,7 @@ Vue.component('building', {
         </div>
       </div>
     `
-})
+});
 
 const app = new Vue({
   el: '#app',
@@ -85,9 +85,9 @@ const app = new Vue({
     helpers: helpers
   },
   methods: {
-    resetGame: function() {
+    resetGame: function () {
       localStorage.clear();
       location.reload();
     }
   }
-})
+});
