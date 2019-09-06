@@ -18,7 +18,7 @@ class Houses extends Building {
   upgradeDone() {
     this.properties.houses++;
     let citizensToAdd = ( Math.floor( Math.random() * 4 ) + 1 );
-    Repository.resources.citizens.amount += citizensToAdd;
+    Repository.getResources().citizens.amount += citizensToAdd;
     let textToShow = helpers.getStr('building.levelCompleted.houses.' + (citizensToAdd > 1 ? 'plural' : 'singular'), citizensToAdd);
     helpers.showBuildFinished( textToShow );
   }

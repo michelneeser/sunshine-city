@@ -18,8 +18,8 @@ class Money extends Resource {
   }
 
   calculateTaxes() {
-    let mayorsOfficeLevel = Repository.buildings.mayorsoffice.properties.level;
-    let nrOfCitizens = Repository.resources.citizens.amount;
+    let mayorsOfficeLevel = Repository.getBuildings().mayorsoffice.properties.level;
+    let nrOfCitizens = Repository.getResources().citizens.amount;
     return nrOfCitizens * ( mayorsOfficeLevel * 10 );
   }
 

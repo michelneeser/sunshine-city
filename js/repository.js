@@ -5,18 +5,43 @@ import Houses from './buildings/houses.js';
 import MayorsOffice from './buildings/mayorsoffice.js';
 import Settings from './settings.js';
 
+// resources
+let money = new Money();
+let citizens = new Citizens();
+
+const resources = {
+  money: money,
+  citizens: citizens,
+};
+
+// buildings
+let villageSquare = new VillageSquare();
+let houses = new Houses();
+let mayorsOffice = new MayorsOffice();
+
+const buildings = {
+  villagesquare: villageSquare,
+  houses: houses,
+  mayorsoffice: mayorsOffice,
+}
+
 class Repository {
 
-  static resources = {};
-  static buildings = {};
+  static getResources() {
+    return resources;
+  }
 
   static getResourcesForView() {
-    return Object.values(this.resources);
+    return Object.values(resources);
+  }
+
+  static getBuildings() {
+    return buildings;
   }
 
   static getBuildingsForView() {
     let buildingsForView = [];
-    let buildingsCopy = Object.values(this.buildings).slice();
+    let buildingsCopy = Object.values(buildings).slice();
     let currentRow = [];
 
     // make rows of three
@@ -39,12 +64,12 @@ class Repository {
     let saveEnabled = Settings.get("saveEnabled");
 
     if (saveEnabled) {
-      for (let resource of Object.values(this.resources)) {
+      for (let resource of Object.values(resources)) {
         localStorage[resource.id] = JSON.stringify(resource.amount);
       }
     }
 
-    for (let building of Object.values(this.buildings)) {
+    for (let building of Object.values(buildings)) {
       building.evaluate(firstTime);
       if (saveEnabled) {
         localStorage[building.id] = JSON.stringify(building.properties);
@@ -52,24 +77,6 @@ class Repository {
     }
   }
 
-}
-
-let money = new Money();
-let citizens = new Citizens();
-
-Repository.resources = {
-  money: money,
-  citizens: citizens,
-};
-
-let villageSquare = new VillageSquare();
-let houses = new Houses();
-let mayorsOffice = new MayorsOffice();
-
-Repository.buildings = {
-  villagesquare: villageSquare,
-  houses: houses,
-  mayorsoffice: mayorsOffice,
 }
 
 export default Repository;

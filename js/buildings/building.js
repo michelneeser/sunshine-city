@@ -41,11 +41,11 @@ class Building {
     let resourcesToSubtract = [];
 
     for (let req of Object.keys(requirements)) {
-      let resource = Repository.resources[req];
+      let resource = Repository.getResources()[req];
 
       if (resource) {
         if (resource.amount >= requirements[req]) {
-          if (!peekOnly && resource == Repository.resources.money) {
+          if (!peekOnly && resource == Repository.getResources().money) {
             resourcesToSubtract.push({
               resource: resource,
               amount: requirements[req]
@@ -55,7 +55,7 @@ class Building {
           return false;
         }
       } else {
-        let building = Repository.buildings[req];
+        let building = Repository.getBuildings()[req];
 
         if (building) {
           if (building.properties.level < requirements[req]) {
@@ -95,17 +95,16 @@ class Building {
       if (buildingTimeEnabled && timeToBuild) {
         this.properties.secondsToBuild = timeToBuild;
         this.upgradeInProgress = true;
+        let endTime = Math.floor( new Date() / 1000 ) + timeToBuild;
         
         let timer = setInterval( function() {
           self.properties.secondsToBuild--;
-          if (self.properties.secondsToBuild == 0) {
+          let currentTime = Math.floor( new Date() / 1000 );
+          if (self.properties.secondsToBuild == 0 || currentTime >= endTime) {
             clearInterval(timer);
+            doUpgrade();
           }
         }, 1000 );
-
-        setTimeout( function() {
-          doUpgrade();
-        }, timeToBuild * 1000 );
       }
       else {
         doUpgrade();
