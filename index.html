@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Welcome to Sunshine City!</title>
+
+  <!-- Vue.js -->
+  <script src="lib/js/vue.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="lib/css/bootstrap.css">
+  <script src="https://unpkg.com/v-tooltip"></script>
+  <!-- Vue.js tooltip plugin -->
+  <link rel="stylesheet" href="lib/css/tooltip.css">
+  <link rel="stylesheet" href="lib/css/tooltip.css">
+  <!-- fonts and icons-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,700&display=swap">
+  <link rel="stylesheet" href="lib/css/icofont/icofont.min.css">
+  
+  <!-- own files -->
+  <script src="js/app.js" type="module"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="container">
+      <div class="row">
+          <div class="col">
+            <h1 class="game-title" v-cloak>{{ gameName }}&nbsp;<span class='icofont-sun-alt'></span></h3>
+            <resource-bar v-bind:resources='resources' v-bind:dict='dict'></resource-bar>
+          </div>
+      </div>
+      <div class="row" v-for='buildingRow in buildings'>
+        <building v-for="building in buildingRow" v-bind:key='building.name'
+          v-bind:building='building'
+          v-bind:dict='dict'
+          v-bind:helpers='helpers'>
+        </building>
+      </div>
+    </div>
+    <div class="reset-game" v-cloak>
+      <button type="button" class="btn btn-danger" v-on:click="resetGame()">Reset game</button>
+    </div>
+  </div>
+
+</body>
+
+</html>

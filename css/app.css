@@ -1,0 +1,69 @@
+[v-cloak] {
+  display: none;
+}
+
+body {
+  font-family: 'Roboto', monospace;
+  background: linear-gradient(to right, #f2994a, #f2c94c);
+}
+
+.game-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 3.5em;
+}
+
+.container {
+  margin-top: 2em;
+}
+
+.building {
+  border: 0.05em solid black;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  margin-right: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  padding: 1em;
+  box-shadow: 0.5em 0.5em 0.5em black;
+  background-color: #664465;
+  color: white;
+}
+
+.building.inactive {
+  opacity: 0.5;
+}
+
+.building .placeholder {
+  text-align: center;
+  font-size: 3em;
+  line-height: 2.2em;
+}
+
+.building .info-wrapper {
+  float: left;
+}
+
+.building .icon {
+  text-align: right;
+}
+
+.building h2 {
+  font-weight: bold;
+  font-size: 1em;
+  display: inline;
+}
+
+.building .properties {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.resource-bar .separator {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.reset-game {
+  text-align: center;
+  margin-top: 5em;
+  margin-bottom: 2em;
+}
