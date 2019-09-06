@@ -1,9 +1,11 @@
+import Settings from './settings.js';
 import Money from './resources/money.js';
 import Citizens from './resources/citizens.js';
 import VillageSquare from './buildings/villagesquare.js';
 import Houses from './buildings/houses.js';
 import MayorsOffice from './buildings/mayorsoffice.js';
-import Settings from './settings.js';
+import Saloon from './buildings/saloon.js';
+import SheriffsOffice from './buildings/sheriffsoffice.js';
 
 // resources
 let money = new Money();
@@ -18,11 +20,15 @@ const resources = {
 let villageSquare = new VillageSquare();
 let houses = new Houses();
 let mayorsOffice = new MayorsOffice();
+let saloon = new Saloon();
+let sheriffsOffice = new SheriffsOffice();
 
 const buildings = {
   villagesquare: villageSquare,
   houses: houses,
   mayorsoffice: mayorsOffice,
+  saloon: saloon,
+  sheriffsoffice: sheriffsOffice,
 }
 
 class Repository {

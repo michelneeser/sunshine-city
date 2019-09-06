@@ -98,11 +98,13 @@ class Building {
         let endTime = Math.floor( new Date() / 1000 ) + timeToBuild;
         
         let timer = setInterval( function() {
-          self.properties.secondsToBuild--;
           let currentTime = Math.floor( new Date() / 1000 );
-          if (self.properties.secondsToBuild == 0 || currentTime >= endTime) {
+          let secsRemaining = endTime - currentTime;
+          if (secsRemaining <= 0) {
             clearInterval(timer);
             doUpgrade();
+          } else {
+            self.properties.secondsToBuild = secsRemaining;
           }
         }, 1000 );
       }

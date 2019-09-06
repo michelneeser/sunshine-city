@@ -18,8 +18,14 @@ body {
 }
 
 .resource-bar {
-  margin-top: 2em;
+  margin-top: 2.5em;
   text-align: center;
+  border: solid black;
+  border-width: 0.05em 0em 0.05em 0em;
+  margin-right: 2em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
 }
 
 .building {
@@ -36,6 +42,14 @@ body {
 
 @media (max-width: 767px) {
   .building {
+    margin-left: 2em;
+  }
+
+  .game-title {
+    font-size: 2.5em;
+  }
+
+  .resource-bar {
     margin-left: 2em;
   }
 }
