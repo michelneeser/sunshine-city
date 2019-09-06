@@ -8,7 +8,7 @@ class Houses extends Building {
     super('houses');
     this.noLevels = true;
     this.properties.houses = 0;
-    this.icon = 'fas fa-home'
+    this.icon = 'fas fa-home';
     this.levels.push(
       { villagesquare: 1 },
       { money: 1000, time: 5 } );

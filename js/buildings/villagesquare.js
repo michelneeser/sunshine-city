@@ -5,7 +5,7 @@ class VillageSquare extends Building {
   constructor() {
     super('villagesquare');
     this.active = true;
-    this.icon = 'fas fa-tree'
+    this.icon = 'fas fa-tree';
     this.levels.push(
       {},
       { time: 60 },

@@ -6,7 +6,7 @@ class Saloon extends Building {
 
   constructor() {
     super('saloon');
-    this.icon = 'fas fa-beer'
+    this.icon = 'fas fa-beer';
     this.levels.push(
       { villagesquare: 1 },
       { money: 1000, time: 300 },

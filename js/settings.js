@@ -1,7 +1,7 @@
 const settings = {
   "saveEnabled" : true,
   "buildingTimeEnabled" : true,
-  "buildingTimeShortingFactor" : 10
+  "buildingTimeShortingFactor" : 0
 }
 
 class Settings {

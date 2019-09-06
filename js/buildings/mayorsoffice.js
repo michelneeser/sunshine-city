@@ -6,7 +6,7 @@ class MayorsOffice extends Building {
 
   constructor() {
     super('mayorsoffice');
-    this.icon = 'fas fa-donate'
+    this.icon = 'fas fa-donate';
     this.levels.push(
       { villagesquare: 2, citizens: 10 },
       { money: 1000, time: 60 },
