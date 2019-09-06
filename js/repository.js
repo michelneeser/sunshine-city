@@ -1,9 +1,8 @@
 import Money from './resources/money.js';
 import Citizens from './resources/citizens.js';
-import TownHall from './buildings/townhall.js';
-import CityPark from './buildings/citypark.js';
-import Church from './buildings/church.js';
+import VillageSquare from './buildings/villagesquare.js';
 import Houses from './buildings/houses.js';
+import MayorsOffice from './buildings/mayorsoffice.js';
 import Settings from './settings.js';
 
 class Repository {
@@ -63,16 +62,14 @@ Repository.resources = {
   citizens: citizens,
 }
 
-let townHall = new TownHall();
-let cityPark = new CityPark();
-let church = new Church();
+let villageSquare = new VillageSquare();
 let houses = new Houses();
+let mayorsOffice = new MayorsOffice();
 
 Repository.buildings = {
-  townHall: townHall,
-  cityPark: cityPark,
-  church: church,
+  villagesquare: villageSquare,
   houses: houses,
+  mayorsoffice: mayorsOffice,
 }
 
 export default Repository;

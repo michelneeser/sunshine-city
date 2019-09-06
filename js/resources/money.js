@@ -4,11 +4,23 @@ import Repository from "../repository.js";
 class Money extends Resource {
 
   constructor() {
-    super('money', 1000);
+    super('money', 10000);
+    this.startMoneyCalculation();
+  }
+
+  startMoneyCalculation() {
     let self = this;
     setInterval(function() {
-      self.amount += ( Repository.resources.citizens.amount * 1000 );
-    }, 2000 );
+      let moneyToAdd = 0;
+      moneyToAdd = self.calculateTaxes();
+      self.amount += moneyToAdd;
+    }, 5000 );
+  }
+
+  calculateTaxes() {
+    let mayorsOfficeLevel = Repository.buildings.mayorsoffice.properties.level;
+    let nrOfCitizens = Repository.resources.citizens.amount;
+    return nrOfCitizens * ( mayorsOfficeLevel * 10 );
   }
 
 }

@@ -1,15 +1,14 @@
 import Repository from './repository.js';
-import dict from './dict.js';
 import helpers from './helpers.js';
 
 Vue.use(VTooltip);
 Vue.use(Toasted);
 
 let buildFinishedToastOptions = {
-  duration: 2000,
+  duration: 5000,
   position: 'bottom-right',
   keepOnHover: true,
-  className: 'toast-build-finished',
+  className: 'toast',
   theme: 'outline',
   iconPack: 'fontawesome',
   icon: 'check-circle'
@@ -19,13 +18,32 @@ Vue.toasted.register('build_finished', (payload) => {
   return payload.message;
 }, buildFinishedToastOptions);
 
+let hintToastOptions = {
+  position: 'bottom-right',
+  keepOnHover: true,
+  className: 'toast',
+  theme: 'outline',
+  iconPack: 'fontawesome',
+  icon: 'hand-point-up',
+  action: {
+    text: helpers.getStr('toast.close'),
+    onClick: (e, toastObject) => {
+      toastObject.goAway(0);
+    }
+  }
+}
+
+Vue.toasted.register('hint', (payload) => {
+  return payload.message;
+}, hintToastOptions);
+
 Vue.component('resource-bar', {
   props: ['resources', 'helpers'],
   template: `
       <div class='resource-bar'>
         <span>{{ helpers.getStr('resource.name.' + resources[0].id) }}{{ resources[0].amount }}</span>
         <span class='separator'>|</span>
-        <span>{{ resources[1].amount }} {{ helpers.getStr('resource.name.' + resources[1].id) }}</span>
+        <span>{{ resources[1].amount }} {{ helpers.getStr('resource.name.' + resources[1].id + (resources[1].amount > 1 ? '.plural' : '.singular')) }}</span>
       </div>
     `
 })

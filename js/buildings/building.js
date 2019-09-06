@@ -66,17 +66,18 @@ class Building {
     }
 
     if (!peekOnly) {
+      for (let obj of resourcesToSubtract) {
+        obj.resource.amount -= obj.amount;
+      }
+
       let self = this;
-      
       let doUpgrade = function() {
         if (!self.noLevels) {
           self.properties.level++;
-          let textToShow = helpers.getStr('building.levelCompleted', self.properties.level, helpers.getBuildingName(self.id));
-          helpers.showBuildFinished( textToShow );
-        }
-  
-        for (let obj of resourcesToSubtract) {
-          obj.resource.amount -= obj.amount;
+          if (!reload) {
+            let textToShow = helpers.getStr('building.levelCompleted', self.properties.level, helpers.getBuildingName(self.id));
+            helpers.showBuildFinished( textToShow );
+          }
         }
 
         self.upgradeInProgress = false;
@@ -85,12 +86,15 @@ class Building {
       };
       
       let buildingTimeEnabled = Settings.get("buildingTimeEnabled");
+      let buildingTimeShortingFactor = Settings.get("buildingTimeShortingFactor");
       let timeToBuild = (reload ? this.properties.secondsToBuild : requirements.time);
+      if (buildingTimeShortingFactor > 0) {
+        timeToBuild = Math.ceil(timeToBuild / buildingTimeShortingFactor);
+      }
 
       if (buildingTimeEnabled && timeToBuild) {
         this.properties.secondsToBuild = timeToBuild;
         this.upgradeInProgress = true;
-        Repository.evaluate();
         
         let timer = setInterval( function() {
           self.properties.secondsToBuild--;
@@ -121,7 +125,13 @@ class Building {
       this.upgrade( false, undefined, true );
     }
 
-    this.active = this.active || this.upgrade(true, 0);
+    if (!this.active) {
+      this.active = this.upgrade(true, 0);
+      if (this.active) {
+        let textToShow = helpers.getStr('building.activated.' + (this.noLevels ? 'plural' : 'singular'), helpers.getBuildingName(this.id));
+        helpers.showHint(textToShow);
+      }
+    }
     this.canUpgrade = this.upgrade(true);
   }
 
