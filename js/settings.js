@@ -1,7 +1,8 @@
 class Settings {
 
   static settings = {
-    "saveEnabled" : true
+    "saveEnabled" : true,
+    "buildingTimeEnabled" : true
   }
 
   static get(key) {

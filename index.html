@@ -13,8 +13,11 @@
   <!-- Vue.js tooltip plugin -->
   <link rel="stylesheet" href="lib/css/tooltip.css">
   <link rel="stylesheet" href="lib/css/tooltip.css">
+  <!-- Vue.js toast plugin -->
+  <script src="https://unpkg.com/vue-toasted"></script>
   <!-- fonts and icons-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,700&display=swap">
+  <link rel="stylesheet" href="lib/css/fontawesome/css/all.css">
   <link rel="stylesheet" href="lib/css/icofont/icofont.min.css">
   
   <!-- own files -->
@@ -41,7 +44,7 @@
       </div>
     </div>
     <div class="reset-game" v-cloak>
-      <button type="button" class="btn btn-danger" v-on:click="resetGame()">Reset game</button>
+      <button type="button" class="btn btn-outline-danger" v-on:click="resetGame()">Reset game</button>
     </div>
   </div>
 

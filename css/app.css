@@ -43,7 +43,15 @@ body {
 }
 
 .building .icon {
-  text-align: right;
+  float: right;
+}
+
+.building .icon[class*='icofont'] {
+  font-size: 3em;
+}
+
+.building .icon.fas {
+  font-size: 3em;
 }
 
 .building h2 {
@@ -66,4 +74,9 @@ body {
   text-align: center;
   margin-top: 5em;
   margin-bottom: 2em;
+}
+
+.toast-build-finished {
+  background-color: #f8f9fa !important;
+  color: #664465 !important;
 }

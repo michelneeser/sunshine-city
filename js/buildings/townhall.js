@@ -8,7 +8,7 @@ class TownHall extends Building {
     this.description = 'This is your home base as the major of Sunshine City';
     this.levels.push(
       {},
-      { time: 10800 },
+      { time: 4 },
       { money: 2000, time: 50 } );
     this.init();
   }

@@ -4,7 +4,6 @@ class Church extends Building {
 
   constructor() {
     super('church');
-    this.description = 'Holy moly guacamole!';
     this.levels.push(
       { cityPark: 2 },
       { money: 10000, citizens: 4 },

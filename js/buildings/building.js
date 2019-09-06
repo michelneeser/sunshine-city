@@ -1,4 +1,6 @@
 import Repository from "../repository.js";
+import Settings from '../settings.js';
+import helpers from "../helpers.js";
 
 class Building {
 
@@ -11,7 +13,8 @@ class Building {
     this.canUpgrade = false;
     this.upgradeInProgress = false;
     this.description = "";
-    this.icon = 'icofont-building-alt';
+    this.icon = 'icofont-tree';
+    //this.icon = 'fas fa-home';
   }
 
   init() {
@@ -69,6 +72,8 @@ class Building {
       let doUpgrade = function() {
         if (!self.noLevels) {
           self.properties.level++;
+          let textToShow = 'Yeah, level ' + self.properties.level + ' of ' + helpers.getBuildingName(self.id) + ' completed!';
+          helpers.showBuildFinished( textToShow );
         }
   
         for (let obj of resourcesToSubtract) {
@@ -80,8 +85,10 @@ class Building {
         Repository.evaluate();
       };
       
+      let buildingTimeEnabled = Settings.get("buildingTimeEnabled");
       let timeToBuild = (reload ? this.properties.secondsToBuild : requirements.time);
-      if (timeToBuild) {
+
+      if (buildingTimeEnabled && timeToBuild) {
         this.properties.secondsToBuild = timeToBuild;
         this.upgradeInProgress = true;
         Repository.evaluate();

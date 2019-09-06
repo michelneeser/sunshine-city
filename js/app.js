@@ -2,7 +2,22 @@ import Repository from './repository.js';
 import dict from './dict.js';
 import helpers from './helpers.js';
 
-Vue.use(VTooltip)
+Vue.use(VTooltip);
+Vue.use(Toasted);
+
+let buildFinishedToastOptions = {
+  duration: 2000,
+  position: 'bottom-right',
+  keepOnHover: true,
+  className: 'toast-build-finished',
+  theme: 'outline',
+  iconPack: 'fontawesome',
+  icon: 'check-circle'
+}
+
+Vue.toasted.register('build_finished', (payload) => {
+  return payload.message;
+}, buildFinishedToastOptions);
 
 Vue.component('resource-bar', {
   props: ['resources', 'dict'],
@@ -21,15 +36,15 @@ Vue.component('building', {
       <div class='building col-lg' v-bind:class='{inactive: !building.active}'>
         <div v-if='building.active'>
           <div class='info-wrapper'>
-            <h2>{{ building.active ? dict['building.name.' + building.id] : '?' }}</h2>
-            <span v-if='building.active'>&nbsp;<i v-tooltip.right='building.description' class='icofont-info-circle'></i></span>
+            <h2>{{ helpers.getBuildingName(building.id) }}</h2>
+            <span>&nbsp;<i v-tooltip.right="dict['building.description.' + building.id]" class='icofont-info-circle'></i></span>
             <ul class='properties'>
               <li v-for='(property, name) in building.properties'>
                 <span v-if="(name != 'level' || !building.noLevels) && name != 'secondsToBuild'">{{ dict['building.property.' + name] }}: {{ property }}</span>
               </li>
             </ul>
           </div>
-          <div v-if='building.active' class='icon icofont-3x' v-bind:class='building.icon'></div>
+          <div class='icon' v-bind:class='building.icon'></div>
           <button type="button" class="btn btn-light btn-block btn-upgrade"
             v-bind:class='{ disabled: !building.canUpgrade || building.upgradeInProgress }'
             v-on:click="building.canUpgrade && !building.upgradeInProgress && building.upgrade()">

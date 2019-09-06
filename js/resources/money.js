@@ -8,7 +8,7 @@ class Money extends Resource {
     let self = this;
     setInterval(function() {
       self.amount += ( Repository.resources.citizens.amount * 1000 );
-    }, 10000 );
+    }, 2000 );
   }
 
 }
