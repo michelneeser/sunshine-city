@@ -30,7 +30,7 @@ body {
 
 .building {
   border: 0.05em solid black;
-  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  border-radius: 0.5em;
   margin-right: 2em;
   margin-top: 1.5em;
   margin-bottom: 0.8em;
@@ -51,6 +51,10 @@ body {
 
   .resource-bar {
     margin-left: 2em;
+  }
+
+  .building .tooltip-description {
+    display: none;
   }
 }
 
@@ -91,6 +95,10 @@ body {
 .building .properties {
   list-style-type: none;
   padding-left: 0;
+}
+
+.building .tooltip-description {
+  margin-left: 0.3em;
 }
 
 .resource-bar .separator {

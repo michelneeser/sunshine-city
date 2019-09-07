@@ -55,7 +55,9 @@ Vue.component('building', {
         <div v-if='building.active'>
           <div class='info-wrapper'>
             <h2>{{ helpers.getBuildingName(building.id) }}</h2>
-            <span>&nbsp;<i v-tooltip.right="helpers.getStr('building.description.' + building.id)" class='icofont-info-circle'></i></span>
+            <span class='tooltip-description'>
+              <i v-tooltip.bottom="helpers.getStr('building.description.' + building.id)" class='icofont-info-circle'></i>
+            </span>
             <ul class='properties'>
               <li v-for='(property, name) in building.properties'>
                 <span v-if="(name != 'level' || !building.noLevels) && name != 'secondsToBuild'">{{ helpers.getStr('building.property.' + name) }}: {{ property }}</span>
@@ -82,7 +84,7 @@ const app = new Vue({
     gameName: 'Sunshine City, California',
     resources: Repository.getResourcesForView(),
     buildings: Repository.getBuildingsForView(),
-    helpers: helpers
+    helpers: helpers,
   },
   methods: {
     resetGame: function () {
